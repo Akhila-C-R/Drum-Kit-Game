@@ -1,3 +1,4 @@
+// add event listener for handling click
 var n=document.querySelectorAll(".drum").length;
 
 for ( var i=0; i<n; i++ )
@@ -10,7 +11,10 @@ function handleClick()
     var buttonType = this.textContent;
     buttonType=buttonType.trim();
     PlayAudio(buttonType);
+    GlowTimeout(buttonType);
 }
+
+// add event listener for handling keypress (called as keydown)
 
 document.addEventListener("keydown", handleKeydown);
 
@@ -18,7 +22,10 @@ function handleKeydown()
 {
     var kbKey = event.key;
     PlayAudio(kbKey);
+    GlowTimeout(kbKey);
 }
+
+//function to play audio for keypress or mouseclick
 
 function PlayAudio(character)
 {
@@ -27,49 +34,44 @@ function PlayAudio(character)
         case "w": 
             var tom1= new Audio('sounds/tom-1.mp3');
             tom1.play();
-            GlowTimeout(character);
         break;
 
         case "a": 
             var tom2= new Audio('sounds/tom-2.mp3');
             tom2.play();
-            GlowTimeout(character);
         break;
 
         case "s": 
             var tom3= new Audio('sounds/tom-3.mp3');
             tom3.play();
-            GlowTimeout(character);
         break;
 
         case "d": 
             var tom4= new Audio('sounds/tom-4.mp3');
             tom4.play();
-            GlowTimeout(character);
         break;
 
         case "j": 
             var crash= new Audio('sounds/crash.mp3');
             crash.play();
-            GlowTimeout(character);
         break;
 
         case "k": 
             var snare= new Audio('sounds/snare.mp3');
             snare.play();
-            GlowTimeout(character);
         break;
 
         case "l": 
             var kick= new Audio('sounds/kick-bass.mp3');
             kick.play();
-            GlowTimeout(character);
         break;
     }
 }
 
+//function for the glow animation
+
 function GlowTimeout(character)
 {
     document.querySelector("."+character).classList.add("glow");
-    setTimeout(function () {document.querySelector("."+character).classList.remove("glow"); },1000);
+    setTimeout(function () {document.querySelector("."+character).classList.remove("glow"); },250);
 }
